@@ -36,6 +36,15 @@
 		
 	}
 	
+	if ( isset($_POST["userInterest"]) && 
+		!empty($_POST["userInterest"])
+	  ) {
+		
+		echo $_POST["userInterest"];
+		saveUserInterest(cleanInput($_POST["userInterest"]));
+		
+	}
+	
     $interests = getAllInterests();
 	
 ?>

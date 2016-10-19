@@ -177,6 +177,30 @@
 		
 	}
 	
+	function saveUserInterest ($interest) {
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+
+		$stmt = $mysqli->prepare("
+			INSERT INTO user_interests_4 (user_id, interest_id) 
+			VALUES (?, ?)
+		");
+	
+		echo $mysqli->error;
+		
+		$stmt->bind_param("ii", $_SESSION["userId"], $interest);
+		
+		if($stmt->execute()) {
+			echo "salvestamine õnnestus";
+		} else {
+		 	echo "ERROR ".$stmt->error;
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
+	
 	function getAllInterests() {
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
